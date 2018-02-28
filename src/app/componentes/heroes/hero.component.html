@@ -1,1 +1,41 @@
-<h1>{{test}}</h1>
+<div class="fadeIn animated fast">
+    <h3 class="text-center" >Héroe <small>Nombre ...</small></h3>
+    <hr/><hr/>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <form action="">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control"
+                            placeholder="Nombre del heroe"
+                            required/>     
+                </div>
+                <div class="form-group">
+                    <label for=""></label>
+                    <select class="form-control" name="">
+                        <option value="Marvel">Marvel</option>
+                        <option value="DC">DC</option>
+                    </select>
+                </div>  
+                <div class="form-group">
+                    <label for="">Bio</label>
+                    <textarea type="text" class="form-control"
+                                placeholder="Descripcion del heroe"
+                                required>   
+                    </textarea>  
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-outline-primary btn-sm">
+                        Guardar cambios
+                    </button>
+                    <button [routerLink]="['heroes']"
+                            class="text-right btn btn-outline-danger btn-sm">
+                       Regresar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
