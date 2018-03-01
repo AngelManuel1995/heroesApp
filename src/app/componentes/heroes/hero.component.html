@@ -4,25 +4,31 @@
     
     <div class="row">
         <div class="col-md-12">
-            <form action="">
+            <form (ngSubmit)="saveHero()" #forma="ngForm" >
                 <div class="form-group">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control"
+                    <input  [(ngModel)]="hero.name"
+                            name="name"
+                            type="text" class="form-control"
                             placeholder="Nombre del heroe"
                             required/>     
                 </div>
                 <div class="form-group">
                     <label for=""></label>
-                    <select class="form-control" name="">
+                    <select [(ngModel)]="hero.house"
+                            name="house"
+                            class="form-control">
                         <option value="Marvel">Marvel</option>
                         <option value="DC">DC</option>
                     </select>
                 </div>  
                 <div class="form-group">
                     <label for="">Bio</label>
-                    <textarea type="text" class="form-control"
+                    <textarea   [(ngModel)]="hero.bio"
+                                name="bio"
+                                type="text" class="form-control"
                                 placeholder="Descripcion del heroe"
-                                required>   
+                                >   
                     </textarea>  
                 </div>
                 <div class="form-group">
@@ -38,4 +44,5 @@
         </div>
     </div>
 </div>
+{{ hero | json }}
 
