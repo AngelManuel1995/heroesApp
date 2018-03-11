@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Hero } from '../interfaces/hero.interface';
 import 'rxjs/Rx';
+
 @Injectable()
 
 export class HeroesService{
  
 
 	heroesURL:string = 'https://heroesapp-ceff9.firebaseio.com/heroes.json';
-	heroUrl:string = 'https://heroesapp-ceff9.firebaseio.com/heroes/';
+	heroUrl:string = 'https://heroesapp-ceff9.firebaseio.com/heroes';
 	
 	constructor( private _http:Http ){
 
@@ -39,6 +40,13 @@ export class HeroesService{
 			console.log(res.json())
 			return res.json();
 		})
+	}
+
+	getHero( key$:string ){
+	  let url = `${this.heroUrl}/${key$}.json`;
+	
+		return this._http.get( url )
+						.map( res => res.json() )
 	}
 
 }
