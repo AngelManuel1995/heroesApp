@@ -17,15 +17,21 @@ export class HeroComponent implements OnInit {
         house:'Marvel'
     }
 
-		id:string;
-		nuevo:boolean = false;
+	id:string;
+	nuevo:boolean = false;
 
-		constructor( private _heroesService:HeroesService, 
-								 private _router:Router,
-								 private _activatedRoute:ActivatedRoute){
-		
-			 this._activatedRoute.params
-				.subscribe( parametros => this.id = parametros['id'] )
+	constructor( private _heroesService:HeroesService, 
+				 private _router:Router,
+				 private _activatedRoute:ActivatedRoute){
+	
+		this._activatedRoute.params
+		.subscribe( parametros => {
+			this.id = parametros['id']
+			if( this.id !== 'nuevo' ){
+				this._heroesService.getHero(this.id)
+				.subscribe( data => this.hero = data)
+			}
+		})
     }
 
     ngOnInit() {
@@ -34,22 +40,27 @@ export class HeroComponent implements OnInit {
 
     saveHero(){
 
-			if( this.id === 'nuevo'){
-				this._heroesService.newHero(this.hero)
-					.subscribe( ( data ) => {
-					 this._router.navigate(['/hero', data.name]);
-				 }, ( e ) => {
-					 console.error(e);
-				 });
-			}else{
-				this._heroesService.updateHero(this.hero, this.id)
+		if( this.id === 'nuevo'){
+			this._heroesService.newHero(this.hero)
 				.subscribe( ( data ) => {
-					console.log(data)
+					this._router.navigate(['/hero', data.name]);
 				}, ( e ) => {
-					console.log(e)
-				})
-			}
+					console.error(e);
+				});
+		}else{
+			this._heroesService.updateHero(this.hero, this.id)
+			.subscribe( ( data ) => {
+				console.log(data)
+			}, ( e ) => {
+				console.log(e)
+			})
 		}
+	}
+
+	resetForma( forma:NgForm ){
+		this._router.navigate(['/hero', 'nuevo'])
+		forma.reset({house:'Marvel'})
+	}
 
     /**
      *JSON.stringify(object): Funcion que permite convertir un objeto a un string

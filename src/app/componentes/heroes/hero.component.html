@@ -11,7 +11,7 @@
                             name="name"
                             type="text" class="form-control"
                             placeholder="Nombre del heroe"
-                            required/>     
+                            required=""/>     
                 </div>
                 <div class="form-group">
                     <label for=""></label>
@@ -27,17 +27,24 @@
                     <textarea   [(ngModel)]="hero.bio"
                                 name="bio"
                                 type="text" class="form-control"
-                                placeholder="Descripcion del heroe"
-                                >   
+                                placeholder="Descripcion del heroe">   
                     </textarea>  
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-outline-primary btn-sm">
+                    <button type="submit" 
+                            class="btn btn-outline-primary btn-sm"
+                            [disabled]="!forma.valid">
                         Guardar cambios
                     </button>
                     <button [routerLink]="['heroes']"
+                            type="button"
                             class="text-right btn btn-outline-danger btn-sm">
                        Regresar
+                    </button>
+                    <button (click)="resetForma(forma)"
+                            type="button"
+                            class="text-right btn btn-outline-success btn-sm">
+                        Nuevo Heroe
                     </button>
                 </div>
             </form>
