@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table">
-                    <thead class="thead-dark">
+                    <thead class="thead-dark animated fadeIn fast">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
@@ -23,8 +23,9 @@
                             <th class="text-right" scope="col">Opciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let k of heroes | keys; let i = index ">
+                    <tbody class="animated fadeIn fast">
+                        <tr class="animated fadeIn fast" 
+                            *ngFor="let k of heroes | keys; let i = index ">
                             <td> {{ i + 1 }} </td>
                             <td> {{ heroes[k].name }} </td>
                             <td> {{ heroes[k].house}} </td>
@@ -43,6 +44,15 @@
                         </tr>
                     </tbody>
                 </table>
+                <div *ngIf="(heroes | keys).length === 0 && !loading"
+                     class="animated fadeIn fast alert alert-info text-center" role="alert">
+                    <strong>Noy hay registros que mostrar</strong>
+                </div>
+
+                <div *ngIf="loading"
+                     class="animated fadeIn fast alert alert-warning text-center" role="alert">
+                    <strong>Cargando ...</strong>
+                </div>
             </div>
         </div>
     </div>

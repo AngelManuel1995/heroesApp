@@ -10,14 +10,18 @@ export class HeroesComponent{
     
 	test:string = "it works";
 
-	heroes:any
-
+	heroes:any;
+	loading:boolean = true;
 	constructor(private _heroesService:HeroesService){
 		
 		this._heroesService.getHeroes()
 			.subscribe( data => {
-				console.log(data)
 				this.heroes = data;
+				this.loading = false;
+				// setTimeout( () => {
+				// 	this.heroes = data;
+				// 	this.loading = false;
+				// },2000)
 			})
 			
 	}
