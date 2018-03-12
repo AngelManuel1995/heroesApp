@@ -17,18 +17,29 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Casa</th>
-                        <th scope="col">Opciones</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Casa</th>
+                            <th class="text-right" scope="col">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <tr *ngFor="let k of heroes | keys; let i = index ">
+                            <td> {{ i + 1 }} </td>
+                            <td> {{ heroes[k].name }} </td>
+                            <td> {{ heroes[k].house}} </td>
+                            <td class="text-right">
+                                <button type="button" 
+                                        class="btn btn-sm btn-success"
+                                        [routerLink]="['/hero', k]">
+                                    Editar
+                                </button>
+                                <button (click)="deleteHero(k)"
+                                        type="button" 
+                                        class="btn btn-sm btn-danger">
+                                    Eliminar
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
