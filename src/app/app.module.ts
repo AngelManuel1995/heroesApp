@@ -11,6 +11,8 @@ import { HeroesComponent } from './componentes/heroes/heroes.component';
 import { HeroComponent} from './componentes/heroes/hero.component';
 
 
+//pipes
+import { KeyPipe } from './pipes/keys.pipe';
 //Routing
 import { APP_ROUTING } from './app.routes';
 
@@ -20,7 +22,8 @@ import { HeroesService } from './services/heroes.service'
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroComponent
+    HeroComponent,
+    KeyPipe
   ],
   imports: [
     BrowserModule,
