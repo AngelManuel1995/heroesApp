@@ -40,13 +40,29 @@ export class HeroesService{
 			console.log(res.json())
 			return res.json();
 		})
-	}
+	}//Update hero
 
+	//getHero
 	getHero( key$:string ){
 	  let url = `${this.heroUrl}/${key$}.json`;
 	
 		return this._http.get( url )
 						.map( res => res.json() )
+	}//getHero
+
+	getHeroes(){
+		return this._http.get( this.heroesURL )
+					 	.map( res => res.json() )
+	}
+
+	removeHero( key$ ){
+		
+		let url = `${this.heroUrl}/${key$}.json`;
+		return this._http.delete( url )
+			.map( res => {
+				console.log(res);
+				return res.json();
+			})
 	}
 
 }
